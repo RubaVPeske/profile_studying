@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Клименко Михаил (RubaVPeske) — Full-Stack разработчик</title>
+  <style>
+    /* Design System Variables */
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+      
+      --color-bg-1: rgba(59, 130, 246, 0.08);
+      --color-bg-2: rgba(245, 158, 11, 0.08);
+      --color-bg-3: rgba(34, 197, 94, 0.08);
+      
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-btn-primary-text: var(--color-cream-50);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-error: var(--color-red-500);
+      --color-success: var(--color-teal-500);
+      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+      
+      --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-md: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-size-3xl: 24px;
+      --font-size-4xl: 30px;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+      --line-height-tight: 1.2;
+      --line-height-normal: 1.5;
+      --letter-spacing-tight: -0.01em;
+      
+      --space-4: 4px;
+      --space-6: 6px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-48: 48px;
+      --space-64: 64px;
+      
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-gray-400-rgb: 119, 124, 124;
+        --color-teal-300-rgb: 50, 184, 198;
+        --color-gray-300-rgb: 167, 169, 169;
+        --color-gray-200-rgb: 245, 245, 245;
+        
+        --color-bg-1: rgba(29, 78, 216, 0.15);
+        --color-bg-2: rgba(180, 83, 9, 0.15);
+        --color-bg-3: rgba(21, 128, 61, 0.15);
+        
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+        --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-error: var(--color-red-400);
+        --color-success: var(--color-teal-300);
+        --color-btn-primary-text: var(--color-slate-900);
+        --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+        --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+      }
+    }
+    
+    @font-face {
+      font-family: 'FKGroteskNeue';
+      src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: var(--font-size-base);
+      font-family: var(--font-family-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text);
+      background-color: var(--color-background);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      z-index: 1000;
+    }
+    
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: var(--space-32);
+      list-style: none;
+    }
+    
+    .nav-menu a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-fast) var(--ease-standard);
+      font-size: var(--font-size-base);
+    }
+    
+    .nav-menu a:hover {
+      color: var(--color-primary);
+    }
+    
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: var(--font-size-3xl);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--color-surface);
+        flex-direction: column;
+        padding: var(--space-24);
+        gap: var(--space-16);
+        border-bottom: 1px solid var(--color-border);
+        display: none;
+      }
+      
+      .nav-menu.active {
+        display: flex;
+      }
+    }
+    
+    /* Hero Section */
+    #hero {
+      background: linear-gradient(135deg, var(--color-bg-1) 0%, var(--color-bg-3) 100%);
+      padding: var(--space-64) var(--space-24);
+      text-align: center;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-content h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-16);
+      color: var(--color-text);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+    
+    .hero-content p {
+      font-size: var(--font-size-xl);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+    }
+    .hero-tagline {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-32);
+      font-style: italic;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background: var(--color-primary);
+      color: var(--color-btn-primary-text);
+      padding: var(--space-16) var(--space-32);
+      border-radius: var(--radius-base);
+      text-decoration: none;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-lg);
+      transition: all var(--duration-normal) var(--ease-standard);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .cta-button:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .cta-button:active {
+      background: var(--color-primary-active);
+      transform: translateY(0);
+    }
+    
+    /* Section Styling */
+    section {
+      padding: var(--space-64) var(--space-24);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    section h2 {
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-32);
+      text-align: center;
+      color: var(--color-text);
+      letter-spacing: var(--letter-spacing-tight);
+    }
+    
+    /* About Section */
+    #about {
+      background-color: var(--color-surface);
+    }
+    
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-48);
+      align-items: center;
+    }
+    
+    @media (min-width: 768px) {
+      .about-content {
+        grid-template-columns: 300px 1fr;
+      }
+    }
+    
+    .profile-icon {
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 2px solid var(--color-card-border);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-surface);
+    }
+    
+    .profile-icon svg {
+      width: 100%;
+      height: 100%;
+      padding: var(--space-32);
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-text p {
+      font-size: var(--font-size-lg);
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-24);
+    }
+    
+    .skills-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+    
+    @media (min-width: 640px) {
+      .skills-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .skills-list li {
+      padding: var(--space-12) var(--space-16);
+      background: var(--color-secondary);
+      border-radius: var(--radius-base);
+      font-weight: var(--font-weight-medium);
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+    }
+    
+    .skills-list li::before {
+      content: "✓";
+      color: var(--color-primary);
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-xl);
+      display: none;
+    }
+    .skill-ico {
+      margin-right: var(--space-8);
+    }
+    
+    /* Portfolio Section */
+    #portfolio {
+      background-color: var(--color-background);
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    }
+    
+    @media (min-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .project-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--color-bg-1) 0%, var(--color-bg-2) 50%, var(--color-bg-3) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-4xl);
+      color: var(--color-text-secondary);
+    }
+    
+    .project-image-real {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--duration-normal) var(--ease-standard);
+    }
+    
+    .project-card:hover .project-image-real {
+      transform: scale(1.05);
+    }
+    
+    .roblox-gallery {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .project-content {
+      padding: var(--space-24);
+    }
+    
+    .project-content h3 {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+      color: var(--color-text);
+    }
+    
+    .project-content p {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+      line-height: 1.6;
+    }
+    
+    .project-link {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: var(--font-weight-medium);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+    
+    .project-link:hover {
+      color: var(--color-primary-hover);
+    }
+    
+    /* Gallery Section */
+    #gallery {
+      background-color: var(--color-background);
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-24);
+    }
+    
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-card-border);
+      transition: all var(--duration-normal) var(--ease-standard);
+      background: var(--color-surface);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--duration-normal) var(--ease-standard);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-caption {
+      padding: var(--space-16);
+      background: var(--color-surface);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+      text-align: center;
+    }
+    
+    /* Contact Section */
+    #contact {
+      background-color: var(--color-surface);
+    }
+    
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: var(--space-24);
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: var(--space-8);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text);
+      font-size: var(--font-size-base);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: var(--space-12) var(--space-16);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-base);
+      font-family: var(--font-family-base);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      transition: border-color var(--duration-fast) var(--ease-standard);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-focus-ring);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-button {
+      width: 100%;
+      padding: var(--space-16);
+      background: var(--color-primary);
+      color: var(--color-btn-primary-text);
+      border: none;
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-standard);
+    }
+    
+    .submit-button:hover {
+      background: var(--color-primary-hover);
+    }
+    
+    .submit-button:active {
+      background: var(--color-primary-active);
+    }
+    
+    .form-message {
+      margin-top: var(--space-16);
+      padding: var(--space-12) var(--space-16);
+      border-radius: var(--radius-base);
+      font-weight: var(--font-weight-medium);
+      display: none;
+    }
+    
+    .form-message.success {
+      background: rgba(var(--color-teal-500-rgb), 0.15);
+      color: var(--color-success);
+      border: 1px solid rgba(var(--color-teal-500-rgb), 0.25);
+      display: block;
+    }
+    
+    .form-message.error {
+      background: rgba(var(--color-red-500-rgb, 192, 21, 47), 0.15);
+      color: var(--color-error);
+      border: 1px solid rgba(var(--color-red-500-rgb, 192, 21, 47), 0.25);
+      display: block;
+    }
+    .status {
+      display: inline-block;
+      padding: var(--space-6) var(--space-12);
+      border-radius: var(--radius-full);
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-sm);
+      margin-top: var(--space-8);
+    }
+    .status--success {
+      background-color: rgba(var(--color-teal-500-rgb), 0.15);
+      color: var(--color-success);
+      border: 1px solid rgba(var(--color-teal-500-rgb), 0.25);
+    }
+    .status--info {
+      background-color: rgba(var(--color-slate-500-rgb), 0.15);
+      color: var(--color-info);
+      border: 1px solid rgba(var(--color-slate-500-rgb), 0.25);
+    }
+    @media (prefers-color-scheme: dark) {
+      .status--success {
+        background-color: rgba(var(--color-teal-300-rgb), 0.15);
+        color: var(--color-teal-300);
+        border: 1px solid rgba(var(--color-teal-300-rgb), 0.25);
+      }
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--color-charcoal-800);
+      color: var(--color-gray-200);
+      padding: var(--space-48) var(--space-24);
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-24);
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-32);
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: var(--color-gray-200);
+      text-decoration: none;
+      transition: color var(--duration-fast) var(--ease-standard);
+      font-size: var(--font-size-base);
+    }
+    
+    .footer-links a:hover {
+      color: var(--color-teal-300);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-24);
+      font-size: var(--font-size-2xl);
+    }
+    
+    .social-links a {
+      color: var(--color-gray-200);
+      text-decoration: none;
+      transition: all var(--duration-fast) var(--ease-standard);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: rgba(var(--color-gray-400-rgb, 119, 124, 124), 0.15);
+    }
+    
+    .social-links a:hover {
+      background: var(--color-teal-300);
+      color: var(--color-slate-900);
+      transform: translateY(-4px);
+    }
+    
+    .copyright {
+      color: rgba(var(--color-gray-200-rgb, 245, 245, 245), 0.7);
+      font-size: var(--font-size-sm);
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#hero" class="logo">RubaVPeske</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <ul class="nav-menu">
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#portfolio">Проекты</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="hero-content">
+        <h1>Привет, я Михаил</h1>
+        <p class="hero-tagline">Full-Stack разработчик | Геймдев</p>
+        <p>Специализируюсь на Backend, Frontend и Game Development</p>
+        <a href="#contact" class="cta-button">Связаться со мной</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>Обо мне</h2>
+      <div class="about-content">
+        <div class="profile-icon">
+          <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--color-teal-500);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:var(--color-teal-700);stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="90" fill="url(#grad1)" opacity="0.1"/>
+            <path d="M60 80 L60 120 L80 120 L80 100 L100 100 L100 120 L120 120 L120 80 L100 80 L100 100 L80 100 L80 80 Z" fill="var(--color-primary)" opacity="0.8"/>
+            <rect x="60" y="130" width="80" height="8" rx="4" fill="var(--color-primary)" opacity="0.6"/>
+            <circle cx="140" cy="60" r="15" fill="var(--color-teal-300)" opacity="0.5"/>
+            <path d="M130 55 L135 60 L145 50" stroke="var(--color-teal-700)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="about-text">
+          <p>Full-stack разработчик с опытом в backend (Java, Python), frontend разработке (HTML, CSS, JavaScript) и текущей специализацией в game development на платформе Roblox с использованием Lua. Разрабатываю интеграционные решения с 1С, автоматизационные боты для Telegram, нативные мобильные приложения для Android. Параллельно активно создаю игры и игровые модификации на Roblox, работая с Lua VM, системами взаимодействия игроков и gameplay механиками. Фокусирую на создании полнофункциональных решений, от пользовательского интерфейса до серверной логики и игровых систем.</p>
+          <ul class="skills-list">
+            <li><span class="skill-ico">🎨</span>Frontend: HTML, CSS, JavaScript</li>
+            <li><span class="skill-ico">⚙️</span>Backend: Java, Python, API Design</li>
+            <li><span class="skill-ico">🎮</span>Lua &amp; Roblox Studio</li>
+            <li><span class="skill-ico">🎯</span>Game Mechanics &amp; Design</li>
+            <li><span class="skill-ico">🔗</span>1С Integration API</li>
+            <li><span class="skill-ico">🤖</span>Telegram Bot API</li>
+            <li><span class="skill-ico">📱</span>Android Development</li>
+            <li><span class="skill-ico">🗄️</span>Database Design</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h2>Проекты</h2>
+      <div class="portfolio-grid">
+        <article class="project-card">
+          <img src="images/bot.jpg" alt="Telegram Bot — Система сброса пароля" class="project-image-real" loading="lazy">
+          <div class="project-content">
+            <h3>Telegram Bot — Система сброса пароля</h3>
+            <p>Разработка интеллектуального Telegram бота для сотрудников компании Хлебпром с интеграцией в систему 1С. Бот обеспечивает безопасный сброс пароля, уведомления и управление доступом.</p>
+            <div class="status status--info">Python, Telegram Bot API, 1С</div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="images/food1.jpg" alt="Food Delivery Mobile App" class="project-image-real" loading="lazy">
+          <div class="project-content">
+            <h3>Food Delivery Mobile App</h3>
+            <p>Нативное Android приложение для системы заказа доставки еды из ресторанов. Приложение включает каталог блюд, корзину заказов, отслеживание доставки в реальном времени и систему оценок.</p>
+            <div class="status status--info">Java, Android, REST API, Frontend UI</div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="roblox-gallery">
+            <img src="images/game1.jpg" alt="Roblox Game Development 1" class="project-image-real" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h3>Roblox Game Development</h3>
+            <p>Разработка игр и игровых модификаций на платформе Roblox с использованием Lua. Создание игровых механик, систем взаимодействия между игроками, UI элементов и backend логики для многопользовательских игр.</p>
+            <div class="status status--info">Lua, Roblox Studio, Game Design</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Галерея</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/bot.jpg" alt="Телеграм Бот — Система сброса пароля" loading="lazy">
+          <div class="gallery-caption">Телеграм Бот — Система сброса пароля</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/food1.jpg" alt="Food Delivery App" loading="lazy">
+          <div class="gallery-caption">Food Delivery App</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/game1.jpg" alt="Roblox Game Development 1" loading="lazy">
+          <div class="gallery-caption">Roblox Game Development 1</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/game2.jpg" loading="lazy">
+          <div class="gallery-caption">Roblox Game Development 2</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/game3.jpg" loading="lazy">
+          <div class="gallery-caption">Roblox Game Development 3</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Контакты</h2>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Сообщение *</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Отправить</button>
+        <div class="form-message" id="formMessage"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="tel:+79819607097">+7 (981) 960-70-97</a>
+        <a href="mailto:rubavpeske@gmail.com">rubavpeske@gmail.com</a>
+      </div>
+      <div class="social-links">
+        <a href="https://t.me/RubaVPeske" target="_blank" rel="noopener noreferrer" aria-label="Telegram">📱</a>
+        <a href="https://vk.com/rubavpeske" target="_blank" rel="noopener noreferrer" aria-label="VKontakte">VK</a>
+        <a href="https://github.com/RubaVPeske" target="_blank" rel="noopener noreferrer" aria-label="GitHub">⚙</a>
+      </div>
+      <div class="copyright">
+        &copy; 2025 RubaVPeske. Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+    
+    // Form validation and submission
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      // Validation
+      if (!name) {
+        showMessage('Пожалуйста, введите ваше имя', 'error');
+        return;
+      }
+      
+      if (!email || !email.includes('@')) {
+        showMessage('Пожалуйста, введите корректный email адрес', 'error');
+        return;
+      }
+      
+      if (!message) {
+        showMessage('Пожалуйста, введите сообщение', 'error');
+        return;
+      }
+      
+      // Success
+      showMessage('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.', 'success');
+      
+      // Clear form
+      contactForm.reset();
+    });
+    
+    function showMessage(text, type) {
+      formMessage.textContent = text;
+      formMessage.className = 'form-message ' + type;
+      
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        formMessage.className = 'form-message';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
